@@ -14,3 +14,14 @@ select * FROM exam_scores where score > ( SELECT avg(score) from exam_scores );
 -- 1. atleast one exam attempt as score >= 90
 --  and any ine of the project should have marks >= 85
 
+select * from exam_scores where score >= 90;
+select * from projects where marks >= 85;
+
+select
+    s.name
+    s.branch
+from students as s
+where s.student_id in (select student_id from exam_scores where score >= 90)
+and s.student_id in (select student_id from projects where marks >= 85); ;
+
+
